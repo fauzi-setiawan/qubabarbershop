@@ -1,0 +1,25 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Raleway:wght@400;700&display=swap");
+
+/* Style foto logo */
+.navbar-brand img {
+    object-fit: cover;
+    border-radius: 50%;
+}
+/* Navbar */
+#navbar {
+    background-color: black;
+}
+/* Style tombol */
+.btn-penjelasan {
+    background-color: rgb(167, 142, 17);
+    color: white;
+    text-shadow: 5px 5px 5px black;
+    transition: background-color 0.3s ease, text-shadow 0.2s ease; /* Efek transisi */
+}
+
+/* Hover effect */
+.btn-penjelasan:hover {
+    background-color: rgb(211, 169, 39); /* Warna lebih terang saat hover */
+    text-shadow: 3px 3px 3px black; /* Mengurangi efek bayangan teks */
+}
