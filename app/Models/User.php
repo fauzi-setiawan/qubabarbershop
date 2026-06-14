@@ -2,44 +2,64 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    /** @use HasFactory<UserFactory> */
+    use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table = 'users';  
-    protected $primaryKey = 'id_user';
-    public $incrementing = true;
-    protected $keyType = 'int';
-
-    protected $fillable = [
-        'nama',
+     protected $fillable = [
+        'name',
         'email',
-        'username',
         'password',
         'role',
-        'no_hp',
-        'alamat',
-        'foto',
+        'avatar',
     ];
+
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
-    // relasi ke semua pesanan milik user
-    public function bookings()
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
     {
-        return $this->hasMany(\App\Models\Pesanan::class, 'id_user', 'id_user');
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 
-    // relasi ke transaksi user
-    public function transaksis()
+     public function projects()
     {
-        return $this->hasMany(\App\Models\Transaksi::class, 'id_user', 'id_user');
+        return $this->hasMany(Project::class, 'created_by');
+    }
+
+    public function testCases()
+    {
+        return $this->hasMany(TestCase::class, 'created_by');
+    }
+
+    public function testExecutions()
+    {
+        return $this->hasMany(TestExecution::class, 'executed_by');
+    }
+
+     public function bugReports()
+    {
+        return $this->hasMany(BugReport::class, 'reported_by');
     }
 }
+

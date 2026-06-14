@@ -1,7 +1,3 @@
-import './bootstrap';
+console.log("app.js loaded");
 
-import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
-
-Alpine.start();
+import './dashboard.js';

@@ -15,7 +15,11 @@ return [
     */
 
     'postmark' => [
-        'token' => env('POSTMARK_TOKEN'),
+        'key' => env('POSTMARK_API_KEY'),
+    ],
+
+    'resend' => [
+        'key' => env('RESEND_API_KEY'),
     ],
 
     'ses' => [
@@ -24,15 +28,27 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'resend' => [
-        'key' => env('RESEND_KEY'),
-    ],
-
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
+    ],
+
+    'gemini' => [
+        'key' => env('GEMINI_API_KEY'),
+    ],
+
+   'trello' => [
+    'key' => env('TRELLO_API_KEY'),
+    'token' => env('TRELLO_API_TOKEN'),
+
+    'lists' => [
+            'bug' => env('TRELLO_BUG_LIST'),
+            'todo' => env('TRELLO_TODO_LIST'),
+            'doing' => env('TRELLO_DOING_LIST'),
+            'done' => env('TRELLO_DONE_LIST'),
+        ]
     ],
 
 ];
